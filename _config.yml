@@ -1,0 +1,15 @@
+title: Notes
+baseurl: "/notes"                   # set if deploying to a subpath, e.g. "/notes"
+url: "https://samar1h.github.io"                      # your GitHub Pages URL
+
+collections:
+  notes:
+    output: true
+    permalink: /notes/:name/
+
+defaults:
+  - scope:
+      path: "_notes"
+      type: "notes"
+    values:
+      layout: note
