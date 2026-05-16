@@ -3,16 +3,13 @@ layout: base
 title: Notes
 ---
 <header class="app-header">
-  <span class="app-title"><em>Notes</em></span>
+  <span class="app-title">no<em>.</em>tes</span>
 </header>
 
 <div class="search-wrap">
   <svg class="search-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
   <input class="search-input" id="search" type="search" placeholder="Search notes…" autocomplete="off" spellcheck="false">
 </div>
-
-
-<div class="tags-row" id="tags"></div>
 
 <div class="controls">
   <button class="sort-btn" id="sort-btn">
@@ -22,6 +19,9 @@ title: Notes
   <span class="count-info" id="count"></span>
 </div>
 
+<div class="tags-row" id="tags"></div>
+<div class="notes-list" id="notes-grid">
+  <p class="empty">Loading…</p>
+</div>
 
-<div class="notes-list" id="notes-grid"></div>
 <div class="pagination" id="pagination"></div>
