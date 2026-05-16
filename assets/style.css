@@ -126,7 +126,7 @@ body { font-family:'Atkinson Hyperlegible',sans-serif; background:var(--bg); col
 .note-badge { font-size:.7rem; color:var(--mu); letter-spacing:.1em; text-transform:uppercase; }
 .note-title { font-size:clamp(1.4rem,5vw,1.9rem); font-weight:700; line-height:1.2; letter-spacing:-.02em; margin-bottom:.6rem; }
 .note-meta { font-size:.75rem; color:var(--mu); display:flex; gap:.6rem; flex-wrap:wrap; margin-bottom:1.75rem; }
-.note-body { font-size:1rem; line-height:1.8; }
+.note-body { font-size:1rem; line-height:1.8; text-align:justify; }
 .note-body>*+* { margin-top:1rem; }
 .note-body h1,.note-body h2,.note-body h3 { font-weight:700; line-height:1.3; margin-top:1.75rem; }
 .note-body h1 { font-size:1.35rem; }
