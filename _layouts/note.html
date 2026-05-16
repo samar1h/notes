@@ -10,13 +10,13 @@ layout: base
 </nav>
 
 <article>
-  <center><h1 class="note-title">{{ page.title }}</h1>
+  <center><h1 class="note-title">{{ page.title }}</h1></center>
   <div class="note-meta">
-    <span>{{ page.date | date: "%B %-d, %Y" }}</span>
+    <center><span>{{ page.date | date: "%B %-d, %Y" }}</span></center>
     {% for tag in page.tags %}
     <a href="{{ site.baseurl }}/?tag={{ tag }}" class="meta-tag">#{{ tag }}</a>
     {% endfor %}
   </div>
-    </center>
+    
   <div class="note-body">{{ content }}</div>
 </article>
