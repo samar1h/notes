@@ -12,7 +12,7 @@ layout: base
 <article>
   <center><h1 class="note-title">{{ page.title }}</h1></center>
   <div class="note-meta">
-    <center><span>{{ page.date | date: "%B %-d, %Y" }}</span></center>
+    <center><p>{{ page.date | date: "%B %-d, %Y" }}</p></center>
     {% for tag in page.tags %}
     <a href="{{ site.baseurl }}/?tag={{ tag }}" class="meta-tag">#{{ tag }}</a>
     {% endfor %}
