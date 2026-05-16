@@ -59,7 +59,7 @@ document.addEventListener('keydown', e => e.key === 'Escape' && closeSettings())
 const grid = el('notes-grid');
 if (grid) {
   const PER = 10;
-  let all = [], filtered = [], page = 1, activeTag = null, sm = 0;
+  let all = [], filtered = [], page = 1, activeTags = new Set(), sm = 0;
   const SORTS = [
     { l: 'Date ↓', f: (a,b) => new Date(b.date) - new Date(a.date) },
     { l: 'Date ↑', f: (a,b) => new Date(a.date) - new Date(b.date) },
@@ -68,14 +68,14 @@ if (grid) {
   ];
   const base = document.body.dataset.base || '';
   const params = new URLSearchParams(location.search);
-  if (params.get('tag')) activeTag = params.get('tag');
-  if (params.get('q'))   el('search').value = params.get('q');
+  params.getAll('tag').forEach(t => activeTags.add(t));
+  if (params.get('q')) el('search').value = params.get('q');
 
   function filter() {
     const q = el('search').value.toLowerCase();
     filtered = all.filter(n => {
       const mq = !q || n.title.toLowerCase().includes(q) || (n.excerpt||'').toLowerCase().includes(q);
-      const mt = !activeTag || (n.tags||[]).includes(activeTag);
+      const mt = activeTags.size === 0 || (n.tags||[]).some(t => activeTags.has(t));
       return mq && mt;
     }).sort(SORTS[sm].f);
     page = 1;
@@ -131,12 +131,19 @@ if (grid) {
 
   function drawTags() {
     const tags = [...new Set(all.flatMap(n => n.tags || []))].sort();
-    el('tags').innerHTML =
-      `<button class="chip${!activeTag?' on':''}" onclick="setTag(null)">All</button>` +
-      tags.map(t => `<button class="chip${activeTag===t?' on':''}" onclick="setTag('${t}')">${t}</button>`).join('');
+    const row = el('tags');
+    if (!tags.length) { row.style.display = 'none'; return; }
+    row.style.display = '';
+    row.innerHTML = tags.map(t =>
+      `<button class="chip${activeTags.has(t)?' on':''}" onclick="setTag('${t}')">${t}</button>`
+    ).join('');
   }
 
-  window.setTag = t => { activeTag = t; drawTags(); filter(); };
+  window.setTag = t => {
+    activeTags.has(t) ? activeTags.delete(t) : activeTags.add(t);
+    drawTags();
+    filter();
+  };
 
   function fmtDate(d) {
     return new Date(d + 'T12:00:00').toLocaleDateString('en-US', {month:'short',day:'numeric',year:'numeric'});
