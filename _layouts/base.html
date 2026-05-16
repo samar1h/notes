@@ -1,0 +1,50 @@
+---
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>{% if page.title and page.title != site.title %}{{ page.title }} — {% endif %}{{ site.title }}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ site.baseurl }}/assets/style.css">
+  <!-- Apply saved settings instantly to prevent flash -->
+  <script>!function(){var s=JSON.parse(localStorage.getItem('notes-cfg')||'{}'),r=document.documentElement;r.dataset.theme=s.theme||'dark';r.style.setProperty('--ac',s.accent||'#f0a830');r.style.setProperty('--fs',(s.fs||16)+'px')}()</script>
+</head>
+<body data-base="{{ site.baseurl }}">
+
+<main class="container">{{ content }}</main>
+
+<footer class="app-foot">
+  <button class="settings-btn" id="settings-btn">⚙ settings</button>
+</footer>
+
+<div class="ov-bg" id="ov-bg"></div>
+<div class="s-sheet" id="s-sheet">
+  <div class="sheet-drag"></div>
+  <div class="sheet-hd">Settings</div>
+  <div class="s-row">
+    <div class="s-lbl">THEME</div>
+    <div class="tog-row">
+      <button class="tog" id="dark-tog">Dark</button>
+      <button class="tog" id="light-tog">Light</button>
+    </div>
+  </div>
+  <div class="s-row">
+    <div class="s-lbl">ACCENT COLOR</div>
+    <div class="ac-row" id="accents"></div>
+  </div>
+  <div class="s-row">
+    <div class="s-lbl">FONT SIZE</div>
+    <div class="fs-ctrl">
+      <button class="fs-btn" id="fs-down">−</button>
+      <span class="fs-num" id="fs-num">16px</span>
+      <button class="fs-btn" id="fs-up">+</button>
+    </div>
+  </div>
+</div>
+
+<script src="{{ site.baseurl }}/assets/app.js"></script>
+</body>
+</html>

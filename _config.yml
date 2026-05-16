@@ -1,0 +1,9 @@
+title: Notes
+description: Personal notes
+baseurl: "/notes" # Set to "/repo-name" for project pages (e.g. /my-notes)
+url: "https:samar1h.github.io"
+permalink: /:year/:month/:day/:title/
+markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: false
