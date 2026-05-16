@@ -87,7 +87,11 @@ if (grid) {
     page = Math.min(page, pages);
     const slice = filtered.slice((page - 1) * PER, page * PER);
 
-    el('count').textContent = `${tot} note${tot !== 1 ? 's' : ''} · ${slice.length} shown`;
+    const from = (page - 1) * PER + 1;
+    const to = from + slice.length - 1;
+    el('count').textContent = tot === all.length && slice.length === tot
+      ? `${tot} note${tot !== 1 ? 's' : ''}`
+      : `${from}–${to} of ${tot}`;
     el('sort-lbl').textContent = SORTS[sm].l;
 
     grid.innerHTML = slice.length ? slice.map(n => `
