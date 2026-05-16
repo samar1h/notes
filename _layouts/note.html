@@ -1,31 +1,50 @@
 ---
-layout: base
 ---
-<!--
-<nav class="note-nav">
-  <a href="{{ site.baseurl }}/" class="back-link">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-    Notes
-  </a>
-  <span class="note-badge">note</span>
-</nav>
--->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>{% if page.title and page.title != site.title %}{{ page.title }} — {% endif %}{{ site.title }}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ site.baseurl }}/assets/style.css">
+  <!-- Apply saved settings instantly to prevent flash -->
+  <script>!function(){var s=JSON.parse(localStorage.getItem('notes-cfg')||'{}'),r=document.documentElement;r.dataset.theme=s.theme||'dark';r.style.setProperty('--ac',s.accent||'#f0a830');r.style.setProperty('--fs',(s.fs||16)+'px')}()</script>
+</head>
+<body data-base="{{ site.baseurl }}">
 
-<article>
-  <h1 class="note-title">{{ page.title }}</h1>
-  <div class="note-meta">
-    <span>{{ page.date | date: "%B %-d, %Y" }}</span>
-    {% for tag in page.tags %}<span>#{{ tag }}</span>{% endfor %}
+<main class="container">{{ content }}</main>
+
+<footer class="app-foot">
+  <button class="settings-btn" id="settings-btn">⚙ settings</button>
+</footer>
+
+<div class="ov-bg" id="ov-bg"></div>
+<div class="s-sheet" id="s-sheet">
+  <div class="sheet-drag"></div>
+  <div class="sheet-hd">Settings</div>
+  <div class="s-row">
+    <div class="s-lbl">THEME</div>
+    <div class="tog-row">
+      <button class="tog" id="dark-tog">Dark</button>
+      <button class="tog" id="light-tog">Light</button>
+    </div>
   </div>
-  <div class="note-body">{{ content }}</div>
-</article>
-
-<div class="note-foot">
-  <a href="{{ site.baseurl }}/" class="back-foot">
-    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-    Back to notes
-  </a>
-  {% for tag in page.tags %}
-  <a href="{{ site.baseurl }}/?tag={{ tag }}" class="n-tag">#{{ tag }}</a>
-  {% endfor %}
+  <div class="s-row">
+    <div class="s-lbl">ACCENT COLOR</div>
+    <div class="ac-row" id="accents"></div>
+  </div>
+  <div class="s-row">
+    <div class="s-lbl">FONT SIZE</div>
+    <div class="fs-ctrl">
+      <button class="fs-btn" id="fs-down">−</button>
+      <span class="fs-num" id="fs-num">16px</span>
+      <button class="fs-btn" id="fs-up">+</button>
+    </div>
+  </div>
 </div>
+
+<script src="{{ site.baseurl }}/assets/app.js"></script>
+</body>
+</html>
